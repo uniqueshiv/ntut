@@ -30,13 +30,7 @@ app.use(`${api}/users`,userRouters);
 
 
 //Database
-mongoose.connect('mongodb+srv://shivachauhan:' + encodeURIComponent("mongodb#21") + '@cluster0.rhan5.mongodb.net/NodeTuts?retryWrites=true&w=majority', {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-        dbName: 'NodeTuts',
-        useCreateIndex: true
-    })
+mongoose.connect("")
     .then(() => {
         console.log("database connection established");
     })
