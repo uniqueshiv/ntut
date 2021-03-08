@@ -22,18 +22,20 @@ router.get('/:id',async(req,res)=>{
 })
 
 router.put('/:id',async(req,res)=>{
-    const category = await Category.findByIdAndUpdate(req.params.id,{
-        name:req.body.name,
-        icon:req.body.icon,
-        color:req.body.color
-    },
-    {new:true});
-    if(category){
-        return res.status(200).json({success:true,message:"category is udpated"})
-    }else{
-        return res.status(404).json({success:false,message:"does not find category"})
-    }
-    
+    const category = await Category.findByIdAndUpdate(req.params.id, {
+        name: req.body.name,
+        icon: req.body.icon,
+        color: req.body.color
+    }, {
+        new: true
+    });
+    if (!category) {
+        return res.status(200).json({
+            success: false,
+            message: "category did not update"
+        })
+     }
+     res.send(category);    
 })
 
 router.post('/', async (req, res) => {
