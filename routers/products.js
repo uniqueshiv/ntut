@@ -7,7 +7,14 @@ const router =  express.Router();
 
 router.get(`/`,async(req,res) =>  {
 
-    const productList = await Product.find().populate('category');
+   // const productList = await Product.find().populate('category');
+   let filter = {}
+   if(req.query.category){
+        filter = {category: req.query.category.split(',')}
+   }
+   //get the product related to the category
+   const productList = await Product.find(filter).populate('category');
+
     if(!productList){
         res.status(500).json({success:false});
     }
